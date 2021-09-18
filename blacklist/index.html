@@ -37,15 +37,15 @@
         <div class="form-row">
           <div class="col">
             <label for="ot-search">Search OT</label>
-            <input type="text" id="ot-search" class="form-control">
+            <input type="text" id="ot-search-timeout" class="form-control">
           </div>
           <div class="col">
             <label for="id-search">Search TID</label>
-            <input type="text" id="id-search" class="form-control">
+            <input type="text" id="id-search-timeout" class="form-control">
           </div>
           <div class="col">
             <label for="discord-search">Search Discord</label>
-            <input type="text" id="discord-search" class="form-control">
+            <input type="text" id="discord-search-timeout" class="form-control">
           </div>
         </div>
         <br />
@@ -117,7 +117,82 @@
       );
     });
 
-    $("#id-search").keyup(function() {
+    // Timers for typing - don't search on every letter.
+    var timer;
+    var maxTime = 2000;  // Time in ms to wait before searching.
+
+    var $results = $("#results");
+
+    $("#ot-search-timeout").keyup(function() {
+      // Test validity of input - All characters, 12 digits max
+      // There's probably a better way to do this...
+      var testArr = $(this).val().split("");
+      var resultArr = [];
+      for (var i in testArr) {
+        if (i < 12) {
+          resultArr.push(testArr[i]);
+        }
+        $(this).val(resultArr.join(""));
+      }
+
+      if ($(this).val().trim() == "") {
+        // Empty results table
+        $results.html("");
+
+        // If the id search box is blank, populate table with all entries
+        for (var entry of bl) {
+          $results.append(formatEntry(entry));
+        }
+        // ot search box is blank, so we can allow the id search box to be typed in again
+        $("#id-search-timeout").prop("disabled", false);
+        // ot search box is blank, so we can allow the discord search box to be typed in again
+        $("#discord-search-timeout").prop("disabled", false);
+        updateResults(bl.length);
+      } else {
+        // ot search box is not blank, blank out the id/discord boxes
+        $("#id-search-timeout").prop("disabled", true);
+        // empty it (just in case!)
+        $("#id-search-timeout").html("");
+        $("#discord-search-timeout").prop("disabled", true);
+        // empty it (just in case!)
+        $("#discord-search-timeout").html("");
+
+        clearTimeout(timer);
+        if ($(this).val()) {
+            timer = setTimeout(searchOT, maxTime);
+        }
+      }
+    });
+
+    function searchOT() {
+      // Empty results table
+      $results.html("");
+
+      // Set up options for our fuzzy search
+      var options = {
+          includeScore: true,
+          threshold: 0.3, // More or less arbitrary, lower value = less "fuzziness" i.e. user must type more accurately
+          keys: ["OT"],
+      };
+      // Initialize and run search
+      var fuse = new Fuse(bl, options);
+      var search = fuse.search($("#ot-search-timeout").val());
+
+      // Add entries with "Multiple OTs" to results
+      for (var entry of bl) {
+          if (!entry.OT) continue;
+          if (entry.OT.includes("Multiple")) search.push(entry);
+      }
+      var i = 0;
+      for (var result of search) {
+          // Add our search results to the table
+          addToTable(result, $results);
+          i++;
+      }
+      updateResults(i);
+    };
+
+    $("#id-search-timeout").keyup(function() {
       // Test validity of input - Numeric, 6 digits max
       // There's probably a better way to do this...
       var testArr = $(this).val().split("");
@@ -130,150 +205,109 @@
         $(this).val(resultArr.join(""));
       }
 
-      // Empty results table in preparation for populating it with the search data
-      var $results = $("#results");
-      $results.html("");
+      if ($(this).val().trim() == "") {
+        // Empty results table
+        $results.html("");
 
-      if ($(this).val().trim() === "") {
         // If the id search box is blank, populate table with all entries
         for (var entry of bl) {
           $results.append(formatEntry(entry));
         }
         // id search box is blank, so we can allow the ot search box to be typed in again
-        $("#ot-search").prop("disabled", false);
+        $("#ot-search-timeout").prop("disabled", false);
         // id search box is blank, so we can allow the discord search box to be typed in again
-        $("#discord-search").prop("disabled", false);
+        $("#discord-search-timeout").prop("disabled", false);
         updateResults(bl.length);
       } else {
         // id search box is not blank, blank out the ot/discord boxes
-        $("#ot-search").prop("disabled", true);
+        $("#ot-search-timeout").prop("disabled", true);
         // empty it (just in case!)
-        $("#ot-search").html("");
-        $("#discord-search").prop("disabled", true);
+        $("#ot-search-timeout").html("");
+        $("#discord-search-timeout").prop("disabled", true);
         // empty it (just in case!)
-        $("#discord-search").html("");
+        $("#discord-search-timeout").html("");
 
-        // Set up options for our fuzzy search
-        var options = {
+        clearTimeout(timer);
+        if ($(this).val()) {
+          timer = setTimeout(searchID, maxTime);
+        }
+      }
+    });
+
+    function searchID() {
+      // Empty results table
+      $results.html("");
+
+      // Set up options for our fuzzy search
+      var options = {
           includeScore: true,
           threshold: 0.3, // More or less arbitrary, lower value = less "fuzziness" i.e. user must type more accurately
           keys: ["ID #s"],
-        };
-        // Initialize and run search
-        var fuse = new Fuse(bl, options);
-        var search = fuse.search($(this).val());
+      };
+      // Initialize and run search
+      var fuse = new Fuse(bl, options);
+      var search = fuse.search($("#id-search-timeout").val());
 
-        // Add entries with "Multiple IDs" to results
-        for (var entry of bl) {
+      // Add entries with "Multiple IDs" to results
+      for (var entry of bl) {
           if (!entry["ID #s"]) continue;
           if (entry["ID #s"].includes("IDs")) search.push(entry);
-        }
-
-        var i = 0;
-        for (var result of search) {
-          // Add our search results to the table
-          addToTable(result, $results);
-          i++;
-        }
-        updateResults(i);
       }
-    });
 
-    $("#ot-search").keyup(function() {
-      // Test validity of input - All characters, 12 digits max
+      var i = 0;
+      for (var result of search) {
+        // Add our search results to the table
+        addToTable(result, $results);
+        i++;
+      }
+      updateResults(i);
+    };
+
+    $("#discord-search-timeout").keyup(function() {
+      // Test validity of input - All characters, 20 digits max
       // There's probably a better way to do this...
       var testArr = $(this).val().split("");
       var resultArr = [];
       for (var i in testArr) {
-        if (i < 12) {
+        if (i < 20) {
           resultArr.push(testArr[i]);
         }
         $(this).val(resultArr.join(""));
       }
 
-      // Empty results table in preparation for populating it with the search data
-      var $results = $("#results");
-      $results.html("");
+      if ($(this).val().trim() == "") {
+        // Empty results table
+        $results.html("");
 
-      if ($(this).val().trim() === "") {
-        // If the ot search box is blank, populate table with all entries
+        // If the id search box is blank, populate table with all entries
         for (var entry of bl) {
           $results.append(formatEntry(entry));
         }
         // ot search box is blank, so we can allow the id search box to be typed in again
-        $("#id-search").prop("disabled", false);
+        $("#id-search-timeout").prop("disabled", false);
         // ot search box is blank, so we can allow the discord search box to be typed in again
-        $("#discord-search").prop("disabled", false);
-        updateResults(bl.length);
-      } else {
-        // ot search box is not blank, blank out the id/discord boxes
-        $("#id-search").prop("disabled", true);
-        // empty it (just in case!)
-        $("#id-search").html("");
-        $("#discord-search").prop("disabled", true);
-        // empty it (just in case!)
-        $("#discord-search").html("");
-
-        // Set up options for our fuzzy search
-        var options = {
-          includeScore: true,
-          threshold: 0.3, // More or less arbitrary, lower value = less "fuzziness" i.e. user must type more accurately
-          keys: ["OT"],
-        };
-        // Initialize and run search
-        var fuse = new Fuse(bl, options);
-        var search = fuse.search($(this).val());
-
-        // Add entries with "Multiple OTs" to results
-        for (var entry of bl) {
-          if (!entry.OT) continue;
-          if (entry.OT.includes("Multiple")) search.push(entry);
-        }
-        var i = 0;
-        for (var result of search) {
-          // Add our search results to the table
-          addToTable(result, $results);
-          i++;
-        }
-        updateResults(i);
-      }
-    });
-
-    $("#discord-search").keyup(function() {
-      // Test validity of input - All characters, 12 digits max
-      // There's probably a better way to do this...
-      var testArr = $(this).val().split("");
-      var resultArr = [];
-      for (var i in testArr) {
-        if (i < 12) {
-          resultArr.push(testArr[i]);
-        }
-        $(this).val(resultArr.join(""));
-      }
-
-      // Empty results table in preparation for populating it with the search data
-      var $results = $("#results");
-      $results.html("");
-
-      if ($(this).val().trim() === "") {
-        // If the ot search box is blank, populate table with all entries
-        for (var entry of bl) {
-          $results.append(formatEntry(entry));
-        }
-        // ot search box is blank, so we can allow the id search box to be typed in again
-        $("#id-search").prop("disabled", false);
-        // ot search box is blank, so we can allow the discord search box to be typed in again
-        $("#ot-search").prop("disabled", false);
+        $("#ot-search-timeout").prop("disabled", false);
         updateResults(bl.length);
       } else {
         // discord search box is not blank, blank out the ot/id boxes
-        $("#id-search").prop("disabled", true);
+        $("#id-search-timeout").prop("disabled", true);
         // empty it (just in case!)
-        $("#id-search").html("");
-        $("#ot-search").prop("disabled", true);
+        $("#id-search-timeout").html("");
+        $("#ot-search-timeout").prop("disabled", true);
         // empty it (just in case!)
-        $("#ot-search").html("");
+        $("#ot-search-timeout").html("");
 
+        clearTimeout(timer);
+        if ($(this).val()) {
+            timer = setTimeout(searchDiscord, maxTime);
+        }
+      }
+    });
+
+    function searchDiscord() {
+      // Empty results table
+      $results.html("");
+        
         // Set up options for our fuzzy search
         var options = {
           includeScore: true,
@@ -282,7 +316,7 @@
         };
         // Initialize and run search
         var fuse = new Fuse(bl, options);
-        var search = fuse.search($(this).val());
+        var search = fuse.search($("#discord-search-timeout").val());
 
         var i = 0;
         for (var result of search) {
@@ -291,8 +325,7 @@
           i++;
         }
         updateResults(i);
-      }
-    });
+    };
 
     function formatEntry(entry) {
       return "<tr>" + "\n" +
