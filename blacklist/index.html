@@ -45,7 +45,7 @@
           </div>
           <div class="col">
             <label for="discord-search">Search by Discord Username</label>
-            <input type="text" id="discord-username" class="form-control">
+            <input type="text" id="discord-search" class="form-control">
           </div>
         </div>
         <br />
@@ -141,13 +141,17 @@
         }
         // id search box is blank, so we can allow the ot search box to be typed in again
         $("#ot-search").prop("disabled", false);
+        // id search box is blank, so we can allow the discord search box to be typed in again
+        $("#discord-search").prop("disabled", false);
         updateResults(bl.length);
       } else {
-        // id seach box is not blank and we don't support searching by both id
-        // and ot, so blank out the ot serach box
+        // id search box is not blank, blank out the ot/discord boxes
         $("#ot-search").prop("disabled", true);
         // empty it (just in case!)
         $("#ot-search").html("");
+        $("#discord-search").prop("disabled", true);
+        // empty it (just in case!)
+        $("#discord-search").html("");
 
         // Set up options for our fuzzy search
         var options = {
@@ -198,13 +202,17 @@
         }
         // ot search box is blank, so we can allow the id search box to be typed in again
         $("#id-search").prop("disabled", false);
+        // ot search box is blank, so we can allow the discord search box to be typed in again
+        $("#discord-search").prop("disabled", false);
         updateResults(bl.length);
       } else {
-        // ot seach box is not blank and we don't support searching by both id
-        // and ot, so blank out the id serach box
+        // ot search box is not blank, blank out the id/discord boxes
         $("#id-search").prop("disabled", true);
         // empty it (just in case!)
         $("#id-search").html("");
+        $("#discord-search").prop("disabled", true);
+        // empty it (just in case!)
+        $("#discord-search").html("");
 
         // Set up options for our fuzzy search
         var options = {
@@ -221,6 +229,61 @@
           if (!entry.OT) continue;
           if (entry.OT.includes("Multiple")) search.push(entry);
         }
+        var i = 0;
+        for (var result of search) {
+          // Add our search results to the table
+          addToTable(result, $results);
+          i++;
+        }
+        updateResults(i);
+      }
+    });
+
+    $("#discord-search").keyup(function() {
+      // Test validity of input - All characters, 12 digits max
+      // There's probably a better way to do this...
+      var testArr = $(this).val().split("");
+      var resultArr = [];
+      for (var i in testArr) {
+        if (i < 12) {
+          resultArr.push(testArr[i]);
+        }
+        $(this).val(resultArr.join(""));
+      }
+
+      // Empty results table in preparation for populating it with the search data
+      var $results = $("#results");
+      $results.html("");
+
+      if ($(this).val().trim() === "") {
+        // If the ot search box is blank, populate table with all entries
+        for (var entry of bl) {
+          $results.append(formatEntry(entry));
+        }
+        // ot search box is blank, so we can allow the id search box to be typed in again
+        $("#id-search").prop("disabled", false);
+        // ot search box is blank, so we can allow the discord search box to be typed in again
+        $("#ot-search").prop("disabled", false);
+        updateResults(bl.length);
+      } else {
+        // discord search box is not blank, blank out the ot/id boxes
+        $("#id-search").prop("disabled", true);
+        // empty it (just in case!)
+        $("#id-search").html("");
+        $("#ot-search").prop("disabled", true);
+        // empty it (just in case!)
+        $("#ot-search").html("");
+
+        // Set up options for our fuzzy search
+        var options = {
+          includeScore: true,
+          threshold: 0.3, // More or less arbitrary, lower value = less "fuzziness" i.e. user must type more accurately
+          keys: ["Discord Username / UserID"],
+        };
+        // Initialize and run search
+        var fuse = new Fuse(bl, options);
+        var search = fuse.search($(this).val());
+
         var i = 0;
         for (var result of search) {
           // Add our search results to the table
