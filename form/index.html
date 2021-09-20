@@ -4,7 +4,7 @@
 <head>
   <link rel="icon" href="../favicon.ico" type="image/x-icon" />
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <title>Form | P.A.C.T.</title>
+  <title>Form | SWSH</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 </head>
 
@@ -21,24 +21,7 @@
 
   <div id="content" class="d-none">
     <div class="bg-dark title sticky-top">
-      <nav class="navbar navbar-expand-sm navbar-dark bg-dark main-nav">
-        <div class="container justify-content-center">
-          <div class="my">
-            <a type="button" class="btn btn-outline-primary" style="border-radius: 0.25rem;" href="../" id="home-link">
-              <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-house-door" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd"
-                  d="M7.646 1.146a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 .146.354v7a.5.5 0 0 1-.5.5H9.5a.5.5 0 0 1-.5-.5v-4H7v4a.5.5 0 0 1-.5.5H2a.5.5 0 0 1-.5-.5v-7a.5.5 0 0 1 .146-.354l6-6zM2.5 7.707V14H6v-4a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v4h3.5V7.707L8 2.207l-5.5 5.5z" />
-                <path fill-rule="evenodd" d="M13 2.5V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z" />
-              </svg>
-            </a>
-          </div>
-          <div class="mx-auto">
-            <span class="h1">
-              <h1 class="text-light text-center navbar-text">P.A.C.T. Form</h1>
-            </span>
-          </div>
-        </div>
-      </nav>
+      <h1 class="text-light text-center pt-3 pb-3">SWSH Hackcheck Form</h1>
     </div>
 
     <div class="text-dark container" style="max-width: 700px;">
@@ -53,107 +36,25 @@
                 <option value=" ">Select one...</option>
               </select>
             </div>
-            <!-- Forme -->
+
+            <!-- Form -->
             <div id="forme-container" class="col d-none">
-              <label for="formes">Pok&eacute;mon Forme</label>
+              <label for="formes">Pok&eacute;mon Form</label>
               <select class="form-control" id="formes">
                 <option value=" ">Select one...</option>
               </select>
             </div>
           </div>
         </div>
-
-        <!-- Shiny -->
+          
+        <!-- Gender -->
         <div class="form-group">
-          <label for="shiny-radio-container">Shiny?</label>
-          <div id="shiny-radio-container">
-            <div class="custom-control custom-radio custom-control-inline">
-              <input type="radio" id="nonShiny" name="shinyRadioButton" class="custom-control-input" checked="true">
-              <label class="custom-control-label" for="nonShiny">Not Shiny</label>
-            </div>
-            <div class="custom-control custom-radio custom-control-inline">
-              <input type="radio" id="starShiny" name="shinyRadioButton" class="custom-control-input">
-              <label class="custom-control-label" for="starShiny">&#x2605; Star Shiny</label>
-            </div>
-            <div class="custom-control custom-radio custom-control-inline">
-              <input type="radio" id="squareShiny" name="shinyRadioButton" class="custom-control-input">
-              <label class="custom-control-label" for="squareShiny">&#x25A0; Square Shiny</label>
-            </div>
-          </div>
-        </div>
-
-        <!-- Ball -->
-        <div class="form-group">
-          <label for="ball">Pok&eacute;ball</label>
-          <select class="form-control" id="ball">
-            <option value=" ">Select one...</option>
-            <option value="Beast">Beast</option>
-            <option value="Cherish">Cherish</option>
-            <option value="Dive">Dive</option>
-            <option value="Dream">Dream</option>
-            <option value="Dusk">Dusk</option>
-            <option value="Fast">Fast</option>
-            <option value="Friend">Friend</option>
-            <option value="Great">Great</option>
-            <option value="Heal">Heal</option>
-            <option value="Heavy">Heavy</option>
-            <option value="Level">Level</option>
-            <option value="Love">Love</option>
-            <option value="Lure">Lure</option>
-            <option value="Luxury">Luxury</option>
-            <option value="Master">Master</option>
-            <option value="Moon">Moon</option>
-            <option value="Nest">Nest</option>
-            <option value="Net">Net</option>
-            <option value="Pok&eacute;">Pok&eacute;</option>
-            <option value="Premier">Premier</option>
-            <option value="Quick">Quick</option>
-            <option value="Repeat">Repeat</option>
-            <option value="Safari">Safari</option>
-            <option value="Sport">Sport</option>
-            <option value="Timer">Timer</option>
-            <option value="Ultra">Ultra</option>
-          </select>
-        </div>
-
-        <!-- Nature -->
-        <div class="form-group">
-          <label for="nature">Nature</label>
-          <select class="form-control" id="nature">
-            <option value=" ">Select one...</option>
-            <option value="Hardy">Hardy</option>
-            <option value="Lonely">Lonely</option>
-            <option value="Brave">Brave</option>
-            <option value="Adamant">Adamant</option>
-            <option value="Naughty">Naughty</option>
-            <option value="Bold">Bold</option>
-            <option value="Docile">Docile</option>
-            <option value="Relaxed">Relaxed</option>
-            <option value="Impish">Impish</option>
-            <option value="Lax">Lax</option>
-            <option value="Timid">Timid</option>
-            <option value="Hasty">Hasty</option>
-            <option value="Serious">Serious</option>
-            <option value="Jolly">Jolly</option>
-            <option value="Naive">Naive</option>
-            <option value="Modest">Modest</option>
-            <option value="Mild">Mild</option>
-            <option value="Quiet">Quiet</option>
-            <option value="Bashful">Bashful</option>
-            <option value="Rash">Rash</option>
-            <option value="Calm">Calm</option>
-            <option value="Gentle">Gentle</option>
-            <option value="Sassy">Sassy</option>
-            <option value="Careful">Careful</option>
-            <option value="Quirky">Quirky</option>
-          </select>
-        </div>
-
-        <!-- Ability -->
-        <div class="form-group">
-          <label for="ability">Ability</label>
-          <select class="form-control" id="ability">
-            <option value=" ">Select one...</option>
+          <label for="gender">Gender</label>
+          <select class="form-control" id="gender">
+            <option value=" ">Select One...</option>
+            <option value="M">Male (&#x2642;)</option>
+            <option value="F">Female (&#x2640;)</option>
+            <option value="-">Genderless</option>
           </select>
         </div>
 
@@ -167,6 +68,12 @@
         <div class="form-group">
           <label for="tid">Trainer ID</label>
           <input class="form-control" type="text" id="tid" placeholder="123456">
+        </div>
+
+        <!-- Level -->
+        <div class="form-group">
+          <label for="level">Level</label>
+          <input class="form-control" type="text" id="level" placeholder="Level" value="100">
         </div>
 
         <!-- IVs -->
@@ -257,107 +164,74 @@
           </small>
         </div>
 
-        <!-- Language -->
+        <!-- Shiny -->
         <div class="form-group">
-          <label for="language">Language</label>
-          <select class="form-control" id="language">
-            <option value=" ">Select one...</option>
-            <option value="ENG">ENG</option>
-            <option value="SPA">SPA</option>
-            <option value="JPN">JPN</option>
-            <option value="FRE">FRE</option>
-            <option value="GER">GER</option>
-            <option value="ITA">ITA</option>
-            <option value="KOR">KOR</option>
-            <option value="CHS">CHS</option>
-            <option value="CHT">CHT</option>
-          </select>
-        </div>
-
-        <!-- Nickname -->
-        <div class="form-group">
-          <label for="nickname">Nickname</label>
-          <input class="form-control" type="text" id="nickname" placeholder="Agumon (Case Sensitive)">
-          <small id="nickDesc" class="form-text text-muted">Please leave this blank if it doesn't have one!</small>
-        </div>
-
-        <!-- Level -->
-        <div class="form-group">
-          <label for="level">Level</label>
-          <input class="form-control" type="text" id="level" placeholder="Level" value="100">
-        </div>
-
-        <!-- Gender -->
-        <div class="form-group">
-          <label for="gender">Gender</label>
-          <select class="form-control" id="gender">
-            <option value=" ">Select One...</option>
-            <option value="M">Male (&#x2642;)</option>
-            <option value="F">Female (&#x2640;)</option>
-            <option value="-">Genderless</option>
-          </select>
-        </div>
-
-        <!-- Origin -->
-        <div class="form-group">
-          <label for="origin">Origin Stamp</label>
-          <select class="form-control" id="origin">
-            <option value=" ">Select one...</option>
-            <option value="Galar">Galar</option>
-            <option value="LGPE">LGPE</option>
-            <option value="PoGo">PoGo</option>
-            <option value="Alola">Alola</option>
-            <option value="Gen 6">Gen 6 Pentagon</option>
-            <option value="VC">VC</option>
-            <option value="None">None</option>
-          </select>
-          <small id="origin-stamp-list" class="form-text text-muted">
-            Galar: <img alt="Galar" src="../resources/images/48px-Galar_symbol.png" width="16" height="16">
-            | LGPE: <img alt="Let's Go" src="../resources/images/48px-Let%27s_Go_icon.png" width="16" height="16">
-            | PoGo: <img alt="PoGo" src="../resources/images/48px-GO_icon_VIII.png" width="16" height="16">
-            | Alola: <img alt="Alola" src="../resources/images/Black_clover_VIII.png" width="16" height="16">
-            | Gen 6: <img alt="Gen 6 Pentagon" src="../resources/images/48px-Blue_pentagon_VIII.png" width="16" height="16">
-            | VC: <img alt="VC" src="../resources/images/48px-GB_icon_VIII.png" width="16" height="16">
-          </small>
-        </div>
-
-        <!-- Moves -->
-        <div class="form-group">
-          <div class="form-row">
-            <div class="col">
-              <label for="move1">Move 1</label>
-              <select class="form-control" id="move1">
-                <option value=" ">(No move)</option>
-              </select>
+          <label for="shiny-radio-container">Shiny?</label>
+          <div id="shiny-radio-container">
+            <div class="custom-control custom-radio custom-control-inline">
+              <input type="radio" id="nonShiny" name="shinyRadioButton" class="custom-control-input" checked="true">
+              <label class="custom-control-label" for="nonShiny">Not Shiny</label>
             </div>
-            <div class="col">
-              <label for="move2">Move 2</label>
-              <select class="form-control" id="move2">
-                <option value=" ">(No move)</option>
-              </select>
+            <div class="custom-control custom-radio custom-control-inline">
+              <input type="radio" id="starShiny" name="shinyRadioButton" class="custom-control-input">
+              <label class="custom-control-label" for="starShiny">&#x2605; Star Shiny</label>
             </div>
-            <div class="col">
-              <label for="move3">Move 3</label>
-              <select class="form-control" id="move3">
-                <option value=" ">(No move)</option>
-              </select>
-            </div>
-            <div class="col">
-              <label for="move4">Move 4</label>
-              <select class="form-control" id="move4">
-                <option value=" ">(No move)</option>
-              </select>
+            <div class="custom-control custom-radio custom-control-inline">
+              <input type="radio" id="squareShiny" name="shinyRadioButton" class="custom-control-input">
+              <label class="custom-control-label" for="squareShiny">&#x25A0; Square Shiny</label>
             </div>
           </div>
-          <small id="movesDesc" class="form-text text-muted">Please list the moves on your Pok&eacute;mon.</small>
+        </div>
+
+        <!-- Ball -->
+        <div class="form-group">
+          <label for="ball">Pok&eacute;ball</label>
+          <select class="form-control" id="ball">
+            <option value=" ">Select one...</option>
+            <option value="Beast">Beast</option>
+            <option value="Cherish">Cherish</option>
+            <option value="Dive">Dive</option>
+            <option value="Dream">Dream</option>
+            <option value="Dusk">Dusk</option>
+            <option value="Fast">Fast</option>
+            <option value="Friend">Friend</option>
+            <option value="Great">Great</option>
+            <option value="Heal">Heal</option>
+            <option value="Heavy">Heavy</option>
+            <option value="Level">Level</option>
+            <option value="Love">Love</option>
+            <option value="Lure">Lure</option>
+            <option value="Luxury">Luxury</option>
+            <option value="Master">Master</option>
+            <option value="Moon">Moon</option>
+            <option value="Nest">Nest</option>
+            <option value="Net">Net</option>
+            <option value="Pok&eacute;">Pok&eacute;</option>
+            <option value="Premier">Premier</option>
+            <option value="Quick">Quick</option>
+            <option value="Repeat">Repeat</option>
+            <option value="Safari">Safari</option>
+            <option value="Sport">Sport</option>
+            <option value="Timer">Timer</option>
+            <option value="Ultra">Ultra</option>
+          </select>
+        </div>
+
+        <!-- History -->
+        <div class="form-group">
+          <label for="previous">History</label>
+          <input class="form-control" type="text" id="previous" placeholder="NiceTrader#1234 from the &quot;Sword and Shield&quot; Discord server">
+          <small id="historyDesc" class="form-text text-muted">What user did you get this Pok&eacute;mon from? Include Discord name, tag, and ID if possible, or a username from a website.<br />
+            State the method if you don't remember the other trader, such as &quot;HOME GTS&quot; or &quot;random link trade&quot;.
+            <br />Pok&eacute;mon that cannot be traced back to the original owner will result in an &quot;?&quot; at best.</small>
         </div>
 
         <!-- Ribbons/Marks -->
         <div class="form-group">
           <label for="ribmark" style="margin-bottom: 0;">Ribbons &amp; Marks</label>
           <small id="ribbonDesc" class="form-text text-muted" style="margin-bottom: 8px;">
-            Please either type in the box OR use the checkboxes below!<br />
-            Please leave this blank if it doesn't have any!
+            Please either type in the box OR use the checkboxes below! You can find this on the last page of the Pok&eacute;mon summary.<br />
+            Leave this blank if it doesn't have any!
           </small>
           <input class="form-control" type="text" id="ribmark" placeholder="Ribbon/Mark Name">
           <br />
@@ -1392,13 +1266,159 @@
           <small id="encounterDesc" class="form-text text-muted">Please copy the text from the second-last page of your Pok&eacute;mon's summary in full.</small>
         </div>
 
-        <!-- History -->
+        <!-- EVs -->
         <div class="form-group">
-          <label for="previous">History</label>
-          <input class="form-control" type="text" id="previous" placeholder="Skadiv#6984 from the &quot;Akala Meadow&quot; Discord server">
-          <small id="historyDesc" class="form-text text-muted">What user did you get this Pok&eacute;mon from? State the method if you don't remember. Inability for us to trace the Pok&eacute;mon back to its origin (e.g. You can't remember/got it
-            from random trade/got it from GTS) will result in an &quot;uncertain but legal&quot; verdict at best.</small>
+          <div class="form-row">
+            <div class="col">
+              <label for="hp">HP EV</label>
+              <input class="form-control" type="text" id="hpev">
+            </div>
+            <div class="col">
+              <label for="atk">Atk EV</label>
+              <input class="form-control" type="text" id="atkev">
+            </div>
+            <div class="col">
+              <label for="def">Def EV</label>
+              <input class="form-control" type="text" id="defev">
+            </div>
+            <div class="col">
+              <label for="spa"><span class="d-block d-sm-block d-md-none">Sp Atk</span><span class="d-none d-md-block d-lg-block d-xl-block">Sp. Atk EV</span></label>
+              <input class="form-control" type="text" id="spaev">
+            </div>
+            <div class="col">
+              <label for="spd"><span class="d-block d-sm-block d-md-none">Sp Def</span><span class="d-none d-md-block d-lg-block d-xl-block">Sp. Def EV</span></label>
+              <input class="form-control" type="text" id="spdev">
+            </div>
+            <div class="col">
+              <label for="spe">Spe EV</label>
+              <input class="form-control" type="text" id="speev">
+            </div>
+          </div>
+          <small id="evDesc" class="form-text text-muted">
+            If you know the exact EVs, write them. If exact numbers are unknown, you may put &quot;yes&quot;. Leave blank otherwise.
+          </small>
         </div>
+
+        <!-- Nature -->
+        <div class="form-group">
+          <label for="nature">Nature</label>
+          <select class="form-control" id="nature">
+            <option value=" ">Select one...</option>
+            <option value="Hardy">Hardy</option>
+            <option value="Lonely">Lonely</option>
+            <option value="Brave">Brave</option>
+            <option value="Adamant">Adamant</option>
+            <option value="Naughty">Naughty</option>
+            <option value="Bold">Bold</option>
+            <option value="Docile">Docile</option>
+            <option value="Relaxed">Relaxed</option>
+            <option value="Impish">Impish</option>
+            <option value="Lax">Lax</option>
+            <option value="Timid">Timid</option>
+            <option value="Hasty">Hasty</option>
+            <option value="Serious">Serious</option>
+            <option value="Jolly">Jolly</option>
+            <option value="Naive">Naive</option>
+            <option value="Modest">Modest</option>
+            <option value="Mild">Mild</option>
+            <option value="Quiet">Quiet</option>
+            <option value="Bashful">Bashful</option>
+            <option value="Rash">Rash</option>
+            <option value="Calm">Calm</option>
+            <option value="Gentle">Gentle</option>
+            <option value="Sassy">Sassy</option>
+            <option value="Careful">Careful</option>
+            <option value="Quirky">Quirky</option>
+          </select>
+        </div>
+
+        <!-- Ability -->
+        <div class="form-group">
+          <label for="ability">Ability</label>
+          <select class="form-control" id="ability">
+            <option value=" ">Select one...</option>
+          </select>
+        </div>
+
+        <!-- Origin -->
+        <div class="form-group">
+          <label for="origin">Origin Stamp</label>
+          <select class="form-control" id="origin">
+            <option value=" ">Select one...</option>
+            <option value="Galar">Galar</option>
+            <option value="LGPE">LGPE</option>
+            <option value="PoGo">PoGo</option>
+            <option value="Alola">Alola</option>
+            <option value="Gen 6">Gen 6 Pentagon</option>
+            <option value="VC">VC</option>
+            <option value="None">None</option>
+          </select>
+          <small id="origin-stamp-list" class="form-text text-muted">
+            Galar <img alt="Galar" src="../resources/images/48px-Galar_symbol.png" width="28" height="28">
+            | LGPE <img alt="Let's Go" src="../resources/images/48px-Let%27s_Go_icon.png" width="28" height="28">
+            | PoGo <img alt="PoGo" src="../resources/images/48px-GO_icon_VIII.png" width="28" height="28">
+            | Alola <img alt="Alola" src="../resources/images/Black_clover_VIII.png" width="28" height="28">
+            | Gen 6 <img alt="Gen 6 Pentagon" src="../resources/images/48px-Blue_pentagon_VIII.png" width="28" height="28">
+            | VC <img alt="VC" src="../resources/images/48px-GB_icon_VIII.png" width="28" height="28"></small>
+        </div>
+
+        <!-- Moves -->
+        <div class="form-group">
+          <div class="form-row">
+            <div class="col">
+              <label for="move1">Move 1</label>
+              <select class="form-control" id="move1">
+                <option value=" ">(No move)</option>
+              </select>
+            </div>
+            <div class="col">
+              <label for="move2">Move 2</label>
+              <select class="form-control" id="move2">
+                <option value=" ">(No move)</option>
+              </select>
+            </div>
+            <div class="col">
+              <label for="move3">Move 3</label>
+              <select class="form-control" id="move3">
+                <option value=" ">(No move)</option>
+              </select>
+            </div>
+            <div class="col">
+              <label for="move4">Move 4</label>
+              <select class="form-control" id="move4">
+                <option value=" ">(No move)</option>
+              </select>
+            </div>
+          </div>
+          <small id="movesDesc" class="form-text text-muted">Please list the moves on your Pok&eacute;mon.</small>
+        </div>
+
+        <!-- GMax/BR/Pokerus -->
+        <div class="form-group">
+          <label for="encounter">Miscellaneous Markings</label>
+          <div class="form-row">
+            <div class="col">
+              <label for="gmax">GMax <img alt="GMax" src="../resources/images/48px-GMax_icon.png" width="28" height="28"></label>
+              <input class="checkmark" type="checkbox" id="gmaxcheck">
+            </div>
+            <div class="col">
+              <label for="battleready">Battle Ready <img alt="Battle Ready" src="../resources/images/48px-BattleReady_icon.png" width="28" height="28"></label>
+              <input class="checkmark" type="checkbox" id="brcheck">
+            </div>
+            <div class="col">
+              <label for="pokerus">Pok&eacute;rus <img alt="Pok&eacute;rus" src="../resources/images/48px-Pokerus_icon.png" width="28" height="28"></label>
+              <input class="checkmark" type="checkbox" id="pkrscheck">
+            </div>
+          </div>
+        </div>
+
+        <!-- Memories -->
+        <div class="form-group">
+          <label for="encounter">Memories</label>
+          <textarea class="form-control" id="memories" rows="4"></textarea>
+          <small id="memoryDesc" class="form-text text-muted">Check your Pok&eacute;mon's memory at a Pok&eacute;mon Center. Include all memories with you and with another trainer.</small>
+        </div>
+
       </form>
       <br />
 
@@ -1417,13 +1437,11 @@
       var species = speciesSelect[speciesSelect.selectedIndex].value;
       var formeSelect = document.getElementById("formes");
       var forme = formeSelect[formeSelect.selectedIndex].value;
-      var ballSelect = document.getElementById("ball");
-      var ball = ballSelect[ballSelect.selectedIndex].value;
-      var natureSelect = document.getElementById("nature");
-      var nature = natureSelect[natureSelect.selectedIndex].value;
-      var ability = document.getElementById("ability").value;
+      var genderSelect = document.getElementById("gender");
+      var gender = genderSelect[genderSelect.selectedIndex].value;
       var ot = document.getElementById("ot").value;
       var tid = document.getElementById("tid").value;
+      var level = document.getElementById("level").value;
       var hpSelect = document.getElementById("hp");
       var hp = hpSelect[hpSelect.selectedIndex].value;
       var atkSelect = document.getElementById("atk");
@@ -1436,33 +1454,70 @@
       var spd = spdSelect[spdSelect.selectedIndex].value;
       var speSelect = document.getElementById("spe");
       var spe = speSelect[speSelect.selectedIndex].value;
-      var languageSelect = document.getElementById("language");
-      var language = languageSelect[languageSelect.selectedIndex].value;
-      var nickname = document.getElementById("nickname").value;
-      var level = document.getElementById("level").value;
-      var genderSelect = document.getElementById("gender");
-      var gender = genderSelect[genderSelect.selectedIndex].value;
+      var ballSelect = document.getElementById("ball");
+      var ball = ballSelect[ballSelect.selectedIndex].value;
+      var previous = document.getElementById("previous").value;
+      var ribmark = document.getElementById("ribmark").value;
+      var encounter = document.getElementById("encounter").value;
+      var hpev = document.getElementById("hpev").value;
+      var atkev = document.getElementById("atkev").value;
+      var defev = document.getElementById("defev").value;
+      var spaev = document.getElementById("spaev").value;
+      var spdev = document.getElementById("spdev").value;
+      var speev = document.getElementById("speev").value;
+      var natureSelect = document.getElementById("nature");
+      var nature = natureSelect[natureSelect.selectedIndex].value;
+      var ability = document.getElementById("ability").value;
       var originSelect = document.getElementById("origin");
       var origin = originSelect[originSelect.selectedIndex].value;
       var move1 = document.getElementById("move1").value;
       var move2 = document.getElementById("move2").value;
       var move3 = document.getElementById("move3").value;
       var move4 = document.getElementById("move4").value;
-      var ribmark = document.getElementById("ribmark").value;
-      var encounter = document.getElementById("encounter").value;
-      var previous = document.getElementById("previous").value;
+      var gmax = document.getElementById("gmaxcheck").checked
+      var br = document.getElementById("brcheck").checked;
+      var pkrs= document.getElementById("pkrscheck").checked;
+      var memories = document.getElementById("memories").value;
       var result = document.getElementById("result");
 
       var problems = [];
 
       if (formeSelect.options.length >= 3 && forme === " ") {
-        problems.push("Forme can't be empty!");
+        problems.push("Form can't be empty!");
       } else if (species == " ") {
         problems.push("Species can't be empty!");
       }
 
+      if (gender == " ") {
+        problems.push("Gender can't be empty!");
+      }
+
+      if (ot == "") {
+        problems.push("OT can't be empty!");
+      }
+
+      if (tid == "") {
+        problems.push("Trainer ID No. can't be empty!");
+      }
+
+      if (level == "" || parseInt(level) < 0 || parseInt(level) > 100) {
+        problems.push("Level can't be empty!");
+      }
+
+      if (hp == " " || atk == " " || def == " " || spa == " " || spd == " " || spe == " ") {
+        problems.push("IVs can't be empty!");
+      }
+
       if (ball == " ") {
         problems.push("Ball can't be empty!");
+      }
+
+      if (previous == "") {
+        problems.push("History can't be empty!");
+      }
+
+      if (encounter == "") {
+        problems.push("Encounter Description can't be empty!");
       }
 
       if (nature == " ") {
@@ -1473,44 +1528,16 @@
         problems.push("Ability can't be empty!");
       }
 
-      if (ot == "") {
-        problems.push("OT can't be empty!");
-      }
-
-      if (tid == "") {
-        problems.push("ID No. can't be empty!");
-      }
-
-      if (hp == " " || atk == " " || def == " " || spa == " " || spd == " " || spe == " ") {
-        problems.push("IVs can't be empty!");
-      }
-
-      if (language == " ") {
-        problems.push("Language can't be empty!");
-      }
-
-      if (level == "" || parseInt(level) < 0 || parseInt(level) > 100) {
-        problems.push("Level can't be empty!");
-      }
-
-      if (gender == " ") {
-        problems.push("Gender can't be empty!");
-      }
-
       if (origin == " ") {
         problems.push("Origin Stamp can't be empty! Select 'None' if it doesn't have one.");
-      }
-
-      if (encounter == "") {
-        problems.push("Encounter Description can't be empty!");
       }
 
       if (move1 == " ") {
         problems.push("Moveset can't be empty!");
       }
 
-      if (previous == "") {
-        problems.push("History can't be empty!");
+      if (memories == "") {
+        problems.push("Memories can't be empty!");
       }
 
       if (problems.length) {
@@ -1521,38 +1548,22 @@
 
       result.value = "```\n";
 
-      if (nickname != "") {
-        result.value += nickname + " the ";
-      }
-      if (document.getElementById("starShiny").checked) {
-        result.value += "\u{2605} - ";
-      } else if (document.getElementById("squareShiny").checked) {
-        result.value += "\u{25A0} - ";
-      }
-
-      result.value += (forme !== " " ? forme : species) + " (" + gender + ")" + "\n";
-      result.value += "\n";
-      result.value += "Pok\u{00E9}ball:      " + ball + "\n";
-      result.value += "Nature:        " + nature + "\n";
-      result.value += "Ability:       " + ability + "\n";
-      result.value += "OT:            " + ot + "\n";
-      result.value += "ID No.:        " + tid + "\n";
-      result.value += "IVs:           " + hp + "/" + atk + "/" + def + "/" + spa + "/" + spd + "/" + spe + "\n";
-      result.value += "Language:      " + language + "\n";
+      result.value += "Pok\u{00E9}mon:       " + (forme !== " " ? forme : species) + " (" + gender + ")" + "\n";
+      result.value += "OT/TID:        " + ot + "/" + tid + "\n";
       result.value += "Level:         " + level + "\n";
-      result.value += "Origin Stamp:  " + origin + "\n";
-      result.value += "Moves:         " + move1 + "\n";
-      if (move2 != " ") {
-        result.value += "               " + move2 + "\n";
+      result.value += "IVs:           " + hp + "/" + atk + "/" + def + "/" + spa + "/" + spd + "/" + spe + "\n";
+
+      result.value += "Shiny:         ";
+      if (document.getElementById("starShiny").checked) {
+        result.value += "Star\n";
+      } else if (document.getElementById("squareShiny").checked) {
+        result.value += "Square\n";
+      } else {
+        result.value += "No\n";
       }
 
-      if (move3 != " ") {
-        result.value += "               " + move3 + "\n";
-      }
-
-      if (move4 != " ") {
-        result.value += "               " + move4 + "\n";
-      }
+      result.value += "Pok\u{00E9}ball:      " + ball + "\n";
+      result.value += "Obtained From: " + previous + "\n";
 
       if (ribmark.trim() != "") {
         result.value += "Ribbons/Marks: " + ribmark + "\n";
@@ -1569,8 +1580,50 @@
         }
       }
 
-      result.value += "Obtained From: " + previous + "\n";
-      result.value += "Encounter:     " + encounter + "```\n";
+      result.value += "Encounter:     " + encounter + "\n";
+
+      // Todo EV training
+      var evstring = "";
+      evstring += hpev == "" ? "?" : hpev;
+      evstring += atkev == "" ? "/?" : "/" + atkev;
+      evstring += defev == "" ? "/?" : "/" + defev;
+      evstring += spaev == "" ? "/?" : "/" + spaev;
+      evstring += spdev == "" ? "/?" : "/" + spdev;
+      evstring += speev == "" ? "/?" : "/" + speev;
+      result.value += "EVs:           " + evstring + "\n";
+
+      result.value += "Nature:        " + nature + "\n";
+      result.value += "Ability:       " + ability + "\n";
+      result.value += "Origin Stamp:  " + origin + "\n";
+      result.value += "Moves:         " + move1 + "\n";
+      if (move2 != " ") {
+        result.value += "               " + move2 + "\n";
+      }
+
+      if (move3 != " ") {
+        result.value += "               " + move3 + "\n";
+      }
+
+      if (move4 != " ") {
+        result.value += "               " + move4 + "\n";
+      }
+
+      var miscstring = "";
+      if (gmax) miscstring += "GMax";
+      if (br) {
+          if (miscstring != "")
+              miscstring += ", ";
+          miscstring += "Battle Ready";
+      }
+      if (pkrs) {
+          if (miscstring != "")
+              miscstring += ", ";
+          miscstring += "Pok&eacute;rus";
+      }
+      result.value += "Misc:          " + miscstring + "\n";
+        
+      result.value += "Memories:      " + memories + "\n";
+      result.value += "```";
 
       // Unhide results
       $("#prompt").removeClass("d-none");
@@ -1864,7 +1917,7 @@
       }
     });
 
-    $("#ball, #nature, #ability, #ot, #tid, #hp, #atk, #def, #spa, #spd, #spe, #language, #level, #gender, #origin, #move1, #encounter, #previous").focusout(function() {
+    $("#ball, #nature, #ability, #ot, #tid, #hp, #atk, #def, #spa, #spd, #spe, #level, #gender, #origin, #move1, #encounter, #previous").focusout(function() {
       if (this.value === " " || this.value === "") {
         $(this).parent().addClass("alert alert-warning");
       } else {
