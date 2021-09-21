@@ -1584,12 +1584,12 @@
 
       // Todo EV training
       var evstring = "";
-      evstring += hpev == "" ? "?" : hpev;
-      evstring += atkev == "" ? "/?" : "/" + atkev;
-      evstring += defev == "" ? "/?" : "/" + defev;
-      evstring += spaev == "" ? "/?" : "/" + spaev;
-      evstring += spdev == "" ? "/?" : "/" + spdev;
-      evstring += speev == "" ? "/?" : "/" + speev;
+      evstring += hpev == "" ? "0" : hpev;
+      evstring += atkev == "" ? "/0" : "/" + atkev;
+      evstring += defev == "" ? "/0" : "/" + defev;
+      evstring += spaev == "" ? "/0" : "/" + spaev;
+      evstring += spdev == "" ? "/0" : "/" + spdev;
+      evstring += speev == "" ? "/0" : "/" + speev;
       result.value += "EVs:           " + evstring + "\n";
 
       result.value += "Nature:        " + nature + "\n";
