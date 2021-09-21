@@ -2,6 +2,8 @@
 
 Houses a GitHub page for a Pokemon hack check form and blacklist for [/r/PokemonSwordAndShield](https://www.reddit.com/r/PokemonSwordAndShield/).
 
+Links: [Blacklist](https://tswann89.github.io/swsh/blacklist/) | [Hackcheck Form](https://tswann89.github.io/swsh/form/)
+
 ## Credits
 
 - Many thanks to [Scorbunny](https://github.com/Scorbunny) for the original form template.
