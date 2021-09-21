@@ -23,7 +23,7 @@
     <div class="bg-dark title sticky-top">
       <h1 class="text-light text-center pt-3 pb-3">SWSH Hackcheck Form</h1>
     </div>
-
+    <div class="w-100 pt-3 text-center">If you need help filling out this form, ask in #hackcheck-discussion.</div>
     <div class="text-dark container" style="max-width: 700px;">
       <br />
       <form>
@@ -38,9 +38,9 @@
             </div>
 
             <!-- Form -->
-            <div id="forme-container" class="col d-none">
-              <label for="formes">Pok&eacute;mon Form</label>
-              <select class="form-control" id="formes">
+            <div id="form-container" class="col d-none">
+              <label for="forms">Pok&eacute;mon Form</label>
+              <select class="form-control" id="forms">
                 <option value=" ">Select one...</option>
               </select>
             </div>
@@ -1424,8 +1424,7 @@
 
       <button type="button" class="btn btn-outline-primary btn-block" onclick="submit()">Submit</button>
 
-      <div class="w-100 pt-3 d-none" id="prompt">Please copy ALL of the output below and paste it in #hackcheck-queue.<br />
-        If you need help filling out this form, you can ask in #hackcheck-discussion.</div>
+      <div class="w-100 pt-3 d-none" id="prompt">Please copy ALL of the output below and paste it in #hackcheck-queue.</div>
       <br />
       <textarea class="form-control d-none" id="result" rows="7" cols="60" style="font-family: monospace"></textarea><br />
 
@@ -1436,8 +1435,8 @@
     function submit() {
       var speciesSelect = document.getElementById("species");
       var species = speciesSelect[speciesSelect.selectedIndex].value;
-      var formeSelect = document.getElementById("formes");
-      var forme = formeSelect[formeSelect.selectedIndex].value;
+      var formSelect = document.getElementById("forms");
+      var form = formSelect[formSelect.selectedIndex].value;
       var genderSelect = document.getElementById("gender");
       var gender = genderSelect[genderSelect.selectedIndex].value;
       var ot = document.getElementById("ot").value;
@@ -1483,7 +1482,7 @@
 
       var problems = [];
 
-      if (formeSelect.options.length >= 3 && forme === " ") {
+      if (formSelect.options.length >= 3 && form === " ") {
         problems.push("Form can't be empty!");
       } else if (species == " ") {
         problems.push("Species can't be empty!");
@@ -1549,7 +1548,7 @@
 
       result.value = "```\n";
 
-      result.value += "Pok\u{00E9}mon:       " + (forme !== " " ? forme : species) + " (" + gender + ")" + "\n";
+      result.value += "Pok\u{00E9}mon:       " + (form !== " " ? form : species) + " (" + gender + ")" + "\n";
       result.value += "OT/TID:        " + ot + "/" + tid + "\n";
       result.value += "Level:         " + level + "\n";
       result.value += "IVs:           " + hp + "/" + atk + "/" + def + "/" + spa + "/" + spd + "/" + spe + "\n";
@@ -1655,7 +1654,7 @@
         // Filter Pokemon
         //////////////////
 
-        // Alt formes
+        // Alt forms
         if (pokemon.baseSpecies && pokemon.baseSpecies !== pokemon.name) continue;
         // CAP + MissingNo.
         if (pokemon.num <= 0) continue;
@@ -1714,27 +1713,27 @@
         });
 
 
-        // Populate formes
-        var altFormes = [];
-        var formeBlacklist = ["-Mega", "-Mega-Y", "-Mega-X", "-Blade", "-Neutral", "-Ultra", "-White", "-Black", "-Dawn-Wings", "-Dusk-Mane", "-Pirouette"];
-        $("#formes").html("<option value=\" \">Select one...</option>");
+        // Populate forms
+        var altforms = [];
+        var formBlacklist = ["-Mega", "-Mega-Y", "-Mega-X", "-Blade", "-Neutral", "-Ultra", "-White", "-Black", "-Dawn-Wings", "-Dusk-Mane", "-Pirouette"];
+        $("#forms").html("<option value=\" \">Select one...</option>");
         for (var i = 0; i < speciesList.length; i++) {
           var species = dex.species.get(speciesList[i].id);
           if (species.baseSpecies === pokemon.name) {
-            var addForme = true;
-            for (var f of formeBlacklist) {
-              if (species.name === species.baseSpecies + f) addForme = false;
+            var addform = true;
+            for (var f of formBlacklist) {
+              if (species.name === species.baseSpecies + f) addform = false;
             }
-            if (addForme) altFormes.push(species.name);
+            if (addform) altforms.push(species.name);
           }
         }
-        if (altFormes.length >= 2) {
-          $("#forme-container").removeClass("d-none");
+        if (altforms.length >= 2) {
+          $("#form-container").removeClass("d-none");
         } else {
-          $("#forme-container").addClass("d-none");
+          $("#form-container").addClass("d-none");
         }
-        for (var i = 0; i < altFormes.length; i++) {
-          $("#formes").append("<option value=\"" + altFormes[i] + "\">" + altFormes[i] + "</option>");
+        for (var i = 0; i < altforms.length; i++) {
+          $("#forms").append("<option value=\"" + altforms[i] + "\">" + altforms[i] + "</option>");
         }
 
         // Populate Gender
@@ -1753,8 +1752,8 @@
         }
       } else {
         // Reset fields
-        $("#formes").html("<option value=\" \">Select one...</option>");
-        $("#forme-container").addClass("d-none");
+        $("#forms").html("<option value=\" \">Select one...</option>");
+        $("#form-container").addClass("d-none");
         $("#ability").html("<option value=\" \">Select one...</option>");
         $("#gender").html("<option value=\" \">Select One...</option><option value=\"F\">Female (&#x2640;)</option><option value=\"M\">Male (&#x2642;)</option><option value=\"-\">Genderless</option>");
         for (var i = 1; i < 5; i++) {
@@ -1763,7 +1762,7 @@
       }
     });
 
-    $("#formes").change(function() {
+    $("#forms").change(function() {
       var monName = $(this).children("option:selected").val().toLowerCase().replace(/[^a-z0-9]/g, "");
       var pokemon = dex.species.get(monName);
       if (monName && pokemon) {
@@ -1821,7 +1820,7 @@
           $("#gender").html("<option value=\" \">Select One...</option><option value=\"F\">Female (&#x2640;)</option><option value=\"M\">Male (&#x2642;)</option>");
         }
         // } else {
-        // Blank forme, so leave it as-is
+        // Blank form, so leave it as-is
       }
     });
 
@@ -1910,7 +1909,7 @@
       }
     });
 
-    $("#formes").focusout(function() {
+    $("#forms").focusout(function() {
       if (!$(this).parent().hasClass("d-none") && (this.value === " " || this.value === "")) {
         $(this).parent().parent().parent().addClass("alert alert-warning");
       } else {
