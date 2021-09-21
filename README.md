@@ -7,7 +7,7 @@ Links: [Blacklist](https://tswann89.github.io/swsh/blacklist/) | [Hackcheck Form
 ## Credits
 
 - Many thanks to [Scorbunny](https://github.com/Scorbunny) for the original form template.
-- Blacklist and Form originally from [ProjectAkala](https://github.com/ProjectAkala).
+- Blacklist and Form originally from [ProjectAkala](https://github.com/ProjectAkala), modified for /r/PokemonSwordandShield by <a href="https://github.com/Lusamine">Lusamine</a> &amp; <a href="https://github.com/tswann89">Timaloo</a>.
 - Most of the formatting, the blacklist page, form validation, and maintenance of the main reo by [LegoFigure11](https://github.com/LegoFigure11).
 - Data for learnsets, moves, and species provided by [`@pkmn/dex`](https://github.com/pkmn/ps/tree/master/dex) and Pokémon Showdown.
 - General form output aesthetics by [Skadiv](https://github.com/Skadiv).
