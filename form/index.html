@@ -159,7 +159,7 @@
             </div>
           </div>
           <small id="ivDesc" class="form-text text-muted">
-            These descriptions can be found using the Judge feature in your PC.<br />
+            These descriptions can be found using the Judge feature in your PC or HOME Premium.<br />
             31: Best | 30: Fantastic | 26-29: Very Good | 16-25: Pretty Good | 1-15: Decent | 0: No Good
           </small>
         </div>
@@ -1424,7 +1424,8 @@
 
       <button type="button" class="btn btn-outline-primary btn-block" onclick="submit()">Submit</button>
 
-      <div class="w-100 pt-3 d-none" id="prompt">Please copy ALL of the output below and paste it in #requests.</div>
+      <div class="w-100 pt-3 d-none" id="prompt">Please copy ALL of the output below and paste it in #hackcheck-queue.<br />
+        If you need help filling out this form, you can ask in #hackcheck-discussion.</div>
       <br />
       <textarea class="form-control d-none" id="result" rows="7" cols="60" style="font-family: monospace"></textarea><br />
 
@@ -1618,7 +1619,7 @@
       if (pkrs) {
           if (miscstring != "")
               miscstring += ", ";
-          miscstring += "Pok&eacute;rus";
+          miscstring += "Pokérus";
       }
       result.value += "Misc:          " + miscstring + "\n";
         
