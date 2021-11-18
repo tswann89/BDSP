@@ -1,4 +1,4 @@
-# PokemonSwordAndShield
+# PokemonBDSP
 
 Houses a GitHub page for a Pokemon hack check form and blacklist for [/r/PokemonSwordAndShield](https://www.reddit.com/r/PokemonSwordAndShield/) & [/r/Pokemon_BDSP](https://www.reddit.com/r/Pokemon_BDSP/).
 
