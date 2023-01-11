@@ -1,8 +1,8 @@
-# PokemonBDSP
+# PokemonSV
 
 Houses a GitHub page for a Pokemon hack check form and blacklist for [/r/PokemonSwordAndShield](https://www.reddit.com/r/PokemonSwordAndShield/) & [/r/Pokemon_BDSP](https://www.reddit.com/r/Pokemon_BDSP/).
 
-Links: [Blacklist](https://tswann89.github.io/BDSP/blacklist/) | [Hackcheck Form](https://tswann89.github.io/BDSP/form/)
+Links: [Blacklist](https://tswann89.github.io/PokemonSV/blacklist/) | [Hackcheck Form](https://tswann89.github.io/PokemonSV/form/)
 
 ## Credits
 
