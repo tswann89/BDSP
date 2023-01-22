@@ -28,7 +28,28 @@
       <form>
         <div class="form-group">
           <div class="row">
+            <!-- Game Version -->
+            <div class="col">
+              <div class="form-group">
+                <label for="gameversion">Game Version</label>
+                <div id="gameversion">
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" id="SWSH" name="gameversionRadioButton" class="custom-control-input" checked="true">
+                    <label class="custom-control-label" for="SWSH">Sword and Shield</label>
+                  </div>
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" id="SV" name="gameversionRadioButton" class="custom-control-input">
+                    <label class="custom-control-label" for="SV">Scarlet and Violet</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <small id="gameversionDesc" class="form-text text-muted">Which game is the Pok&eacute;mon currently in? If it is not in any of these options, then we don't hackcheck it.</small>
+        </div>
             <!-- Species -->
+            <div class="form-group">
+              <div class="row">
             <div class="col">
               <label for="species">Pok&eacute;mon Species</label>
               <select class="form-control" id="species">
@@ -2452,6 +2473,7 @@
 
   <script>
     function submit() {
+      var gameversion = document.getElementById("gameversion");
       var speciesSelect = document.getElementById("species");
       var species = speciesSelect[speciesSelect.selectedIndex].value;
       var formSelect = document.getElementById("forms");
@@ -2567,6 +2589,12 @@
 
       result.value = "```\n";
 
+      result.value += "Game Version:  ";
+      if (document.getElementById("SWSH").checked) {
+        result.value += "Sword/Shield\n";
+      } else if (document.getElementById("SV").checked) {
+        result.value += "Scarlet/Violet\n";
+      }
       result.value += "Pok\u{00E9}mon:       " + (form !== " " ? form : species) + " (" + gender + ")" + "\n";
       result.value += "OT/TID:        " + ot + "/" + tid + "\n";
       result.value += "Level:         " + level + "\n";
@@ -2669,20 +2697,6 @@
 
     $(function() {
       document.getElementById("ball-icon").style = "display: inline-block; width: 24px; height: 24px; image-rendering: pixelated; background: url('https://play.pokemonshowdown.com/sprites/itemicons/0.png') 0px 0px no-repeat scroll transparent;"
-      for (var i = 0; i < speciesList.length; i++) {
-        var pokemon = dex.species.get(speciesList[i].id);
-
-        // Filter Pokemon
-        //////////////////
-
-        // Alt forms
-        if (pokemon.baseSpecies && pokemon.baseSpecies !== pokemon.name) continue;
-        // CAP + MissingNo.
-        if (pokemon.num <= 0) continue;
-
-        // Passes filter, add to species select
-        $("#species").append("<option value=\"" + pokemon.name + "\">" + pokemon.name + "</option>");
-      }
       $("#species").change();
 
       $("#content").removeClass("d-none");
@@ -2757,20 +2771,7 @@
           $("#forms").append("<option value=\"" + altforms[i] + "\">" + altforms[i] + "</option>");
         }
 
-        // Populate Gender
-        if (pokemon.gender) {
-          if (pokemon.gender === "F") {
-            $("#gender").html("<option value=\" \">Select One...</option><option value=\"F\">Female (&#x2640;)</option>");
-          } else if (pokemon.gender === "M") {
-            $("#gender").html("<option value=\" \">Select One...</option><option value=\"M\">Male (&#x2642;)</option>");
-          } else if (pokemon.gender === "N") {
-            $("#gender").html("<option value=\" \">Select One...</option><option value=\"-\">Genderless</option>");
-          } else {
-            $("#gender").html("<option value=\" \">Select One...</option><option value=\"F\">Female (&#x2640;)</option><option value=\"M\">Male (&#x2642;)</option>");
-          }
-        } else {
-          $("#gender").html("<option value=\" \">Select One...</option><option value=\"F\">Female (&#x2640;)</option><option value=\"M\">Male (&#x2642;)</option>");
-        }
+
       } else {
         // Reset fields
         $("#forms").html("<option value=\" \">Select one...</option>");
@@ -2783,65 +2784,6 @@
       }
     });
 
-    $("#forms").change(function() {
-      var monName = $(this).children("option:selected").val().toLowerCase().replace(/[^a-z0-9]/g, "");
-      var pokemon = dex.species.get(monName);
-      if (monName && pokemon) {
-        // Populate Abilities
-        $("#ability").html("<option value=\" \">Select one...</option>");
-        var abilities = Object.values(pokemon.abilities);
-        for (var i = 0; i < abilities.length; i++) {
-          $("#ability").append("<option value=\"" + abilities[i] + "\">" + abilities[i] + "</option>");
-        }
-
-        // Populate Moves
-        var learnable = [];
-        dex.learnsets.learnable(monName).then(function(learnset) {
-          var set = Object.keys(learnset);
-          for (var j = 0; j < set.length; j++) {
-            var move = Dex.moves.get(set[j]).name;
-            learnable.push(move);
-          }
-          // We need to get Gen 7 moves too...
-          dex7.learnsets.learnable(monName).then(function(learnset7) {
-            if (learnset7) {
-              var set7 = Object.keys(learnset7);
-              for (var j = 0; j < set7.length; j++) {
-                var move = Dex.moves.get(set7[j]).name;
-                // Filter out CAP moves
-                if (move.isNonstandard && move.isNonstandard === "CAP") continue;
-                learnable.push(move);
-              }
-            }
-            learnable = Array.from(new Set(learnable)).sort();
-            for (var i = 1; i <= 4; i++) {
-              $("#move" + i).html("<option value=\" \">(No Move)</option>");
-              for (var j = 0; j < learnable.length; j++) {
-                var move = learnable[j];
-                $("#move" + i).append("<option id=\"move" + i + "-" + move.split(" ").join("_") + "\" value=\"" + move + "\">" + move + "</option>");
-              }
-            }
-          });
-        });
-
-        // Populate Gender
-        if (pokemon.gender) {
-          if (pokemon.gender === "F") {
-            $("#gender").html("<option value=\" \">Select One...</option><option value=\"F\">Female (&#x2640;)</option>");
-          } else if (pokemon.gender === "M") {
-            $("#gender").html("<option value=\" \">Select One...</option><option value=\"M\">Male (&#x2642;)</option>");
-          } else if (pokemon.gender === "N") {
-            $("#gender").html("<option value=\" \">Select One...</option><option value=\"-\">Genderless</option>");
-          } else {
-            $("#gender").html("<option value=\" \">Select One...</option><option value=\"F\">Female (&#x2640;)</option><option value=\"M\">Male (&#x2642;)</option>");
-          }
-        } else {
-          $("#gender").html("<option value=\" \">Select One...</option><option value=\"F\">Female (&#x2640;)</option><option value=\"M\">Male (&#x2642;)</option>");
-        }
-        // } else {
-        // Blank form, so leave it as-is
-      }
-    });
 
     // Validate TID
     $("#tid").on("keyup keydown", function() {
