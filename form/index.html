@@ -2469,7 +2469,9 @@
         <div class="form-group">
           <label for="encounter">Encounter Description</label>
           <textarea class="form-control" id="encounter" rows="4"></textarea>
-          <small id="encounterDesc" class="form-text text-muted">Please copy the text from the second-last page of your Pok&eacute;mon's summary in full.</small>
+          <small id="encounterDesc" class="form-text text-muted">Please copy the text from your Pok&eacute;mon's summary in full.<br/>
+            This is the text on the second-last page of the summary in Sword and Shield, and the last page of the summary in Scarlet and Violet.
+          </small>
         </div>
 
         <!-- EVs -->
@@ -2501,7 +2503,7 @@
             </div>
           </div>
           <small id="evDesc" class="form-text text-muted">
-            If you know the exact EVs, write them. If exact numbers are unknown, you may put &quot;yes&quot;. Leave blank otherwise.
+            If you know the exact EVs, write them. If exact numbers are unknown, you may put &quot;yes&quot;. Leave blank otherwise. EVs are not the same as a Pok&eacute;mon's stats. 
           </small>
         </div>
 
@@ -2622,7 +2624,7 @@
 
         <!-- Memories -->
         <div class="form-group">
-          <label for="encounter">Memories</label>
+          <label for="encounter">Memories - Sword and Shield Only</label>
           <textarea class="form-control" id="memories" rows="4"></textarea>
           <small id="memoryDesc" class="form-text text-muted">Check your Pok&eacute;mon's memory at a Pok&eacute;mon Center. Include all memories with you and with another trainer.</small>
         </div>
@@ -2745,9 +2747,9 @@
         problems.push("Moveset can't be empty!");
       }
 
-      if (memories == "") {
+      /* if (memories == "") {
         problems.push("Memories can't be empty!");
-      }
+      } */
 
       if (problems.length) {
         $("#prompt").addClass("d-none");
@@ -2838,8 +2840,11 @@
           miscstring += "Pokérus";
       }
       result.value += "Misc:          " + miscstring + "\n";
+
+      if (memories != "") {
+        result.value += "Memories:      " + memories + "\n";
+      }
         
-      result.value += "Memories:      " + memories + "\n";
       result.value += "```";
 
       // Unhide results
