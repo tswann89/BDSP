@@ -1228,14 +1228,14 @@
 
             <!-- Form 
             
-            This is no more
+            This is no more -->
 
             <div id="form-container" class="col d-none">
               <label for="forms">Pok&eacute;mon Form</label>
               <select class="form-control" id="forms">
                 <option value=" ">Select one...</option>
               </select>
-            </div> -->
+            </div> 
           </div>
         </div>
           
@@ -2692,9 +2692,9 @@
 
       if (formSelect.options.length >= 3 && form === " ") {
         problems.push("Form can't be empty!");
-      } // else if (species == " ") {
-        // problems.push("Species can't be empty!");
-      // }
+      } else if (species == " ") {
+        problems.push("Species can't be empty!");
+      }
 
       if (gender == " ") {
         problems.push("Gender can't be empty!");
@@ -2762,7 +2762,7 @@
       } else if (document.getElementById("SV").checked) {
         result.value += "Scarlet/Violet\n";
       }
-      result.value += "Pok\u{00E9}mon:       " + (form !== " " ? form : species) + " (" + gender + ")" + "\n";
+      result.value += "Pok\u{00E9}mon:       " + " (" + gender + ")" + "\n";
       result.value += "OT/TID:        " + ot + "/" + tid + "\n";
       result.value += "Level:         " + level + "\n";
       result.value += "IVs:           " + hp + "/" + atk + "/" + def + "/" + spa + "/" + spd + "/" + spe + "\n";
@@ -2945,11 +2945,11 @@
 
 
       } else {
-        // Reset fields
-        // $("#forms").html("<option value=\" \">Select one...</option>");
-        // $("#form-container").addClass("d-none");
+        //Reset fields
+        $("#forms").html("<option value=\" \">Select one...</option>");
+        $("#form-container").addClass("d-none");
         $("#ability").html("<option value=\" \">Select one...</option>");
-        // $("#gender").html("<option value=\" \">Select One...</option><option value=\"F\">Female (&#x2640;)</option><option value=\"M\">Male (&#x2642;)</option><option value=\"-\">Genderless</option>");
+        $("#gender").html("<option value=\" \">Select One...</option><option value=\"F\">Female (&#x2640;)</option><option value=\"M\">Male (&#x2642;)</option><option value=\"-\">Genderless</option>");
         for (var i = 1; i < 5; i++) {
           $("#move" + i).html("<option value=\" \">(No Move)</option>");
         }
@@ -3042,13 +3042,13 @@
       }
     });
 
-    /* $("#forms").focusout(function() {
+    $("#forms").focusout(function() {
       if (!$(this).parent().hasClass("d-none") && (this.value === " " || this.value === "")) {
         $(this).parent().parent().parent().addClass("alert alert-warning");
       } else {
         $(this).parent().parent().parent().removeClass("alert alert-warning");
       }
-    }); */
+    }); 
 
     $("#ball, #nature, #ability, #ot, #tid, #hp, #atk, #def, #spa, #spd, #spe, #level, #gender, #origin, #move1, #encounter, #previous").focusout(function() {
       if (this.value === " " || this.value === "") {
