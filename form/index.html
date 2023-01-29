@@ -3284,7 +3284,139 @@
       $("#loader").addClass("d-none");
     });
 
-    $("#species").change(function() {
+    // Moveset Population - add to this if they make new moves
+    var learnable = {"Absorb": "Absorb", "Accelerock": "Accelerock", "Acid": "Acid", "Acid Armor": "Acid Armor", "Acid Spray": "Acid Spray", "Acrobatics": "Acrobatics", "Acupressure": "Acupressure", "Aerial Ace": "Aerial Ace", "Aeroblast": "Aeroblast", 
+    "After You": "After You", "Agility": "Agility", "Air Cutter": "Air Cutter", "Air Slash": "Air Slash", "Ally Switch": "Ally Switch", "Amnesia": "Amnesia", "Anchor Shot": "Anchor Shot", "Ancient Power": "Ancient Power", "Apple Acid": "Apple Acid", 
+    "Aqua Cutter": "Aqua Cutter", "Aqua Jet": "Aqua Jet", "Aqua Ring": "Aqua Ring", "Aqua Step": "Aqua Step", "Aqua Tail": "Aqua Tail", "Arm Thrust": "Arm Thrust", "Armor Cannon": "Armor Cannon", "Aromatherapy": "Aromatherapy", "Aromatic Mist": "Aromatic Mist", 
+    "Assist": "Assist", "Assurance": "Assurance", "Astonish": "Astonish", "Astral Barrage": "Astral Barrage", "Attack Order": "Attack Order", "Attract": "Attract", "Aura Sphere": "Aura Sphere", "Aura Wheel": "Aura Wheel", "Aurora Beam": "Aurora Beam", 
+    "Aurora Veil": "Aurora Veil", "Autotomize": "Autotomize", "Avalanche": "Avalanche", "Axe Kick": "Axe Kick", "Baby-Doll Eyes": "Baby-Doll Eyes", "Baneful Bunker": "Baneful Bunker", "Barb Barrage": "Barb Barrage", "Barrage": "Barrage", "Barrier": "Barrier", 
+    "Baton Pass": "Baton Pass", "Beak Blast": "Beak Blast", "Beat Up": "Beat Up", "Belch": "Belch", "Belly Drum": "Belly Drum", "Bestow": "Bestow", "Bide": "Bide", "Bind": "Bind", "Bite": "Bite", "Bitter Blade": "Bitter Blade", "Bitter Malice": "Bitter Malice", 
+    "Blast Burn": "Blast Burn", "Blaze Kick": "Blaze Kick", "Bleakwind Storm": "Bleakwind Storm", "Blizzard": "Blizzard", "Block": "Block", "Blue Flare": "Blue Flare", "Body Press": "Body Press", "Body Slam": "Body Slam", "Bolt Beak": "Bolt Beak", 
+    "Bolt Strike": "Bolt Strike", "Bone Club": "Bone Club", "Bone Rush": "Bone Rush", "Bonemerang": "Bonemerang", "Boomburst": "Boomburst", "Bounce": "Bounce", "Branch Poke": "Branch Poke", "Brave Bird": "Brave Bird", "Breaking Swipe": "Breaking Swipe", 
+    "Brick Break": "Brick Break", "Brine": "Brine", "Brutal Swing": "Brutal Swing", "Bubble": "Bubble", "Bubble Beam": "Bubble Beam", "Bug Bite": "Bug Bite", "Bug Buzz": "Bug Buzz", "Bulk Up": "Bulk Up", "Bulldoze": "Bulldoze", "Bullet Punch": "Bullet Punch", 
+    "Bullet Seed": "Bullet Seed", "Burn Up": "Burn Up", "Burning Jealousy": "Burning Jealousy", "Calm Mind": "Calm Mind", "Camouflage": "Camouflage", "Captivate": "Captivate", "Ceaseless Edge": "Ceaseless Edge", "Celebrate": "Celebrate", "Charge": "Charge", 
+    "Charge Beam": "Charge Beam", "Charm": "Charm", "Chatter": "Chatter", "Chilling Water": "Chilling Water", "Chilly Reception": "Chilly Reception", "Chip Away": "Chip Away", "Chloroblast": "Chloroblast", "Circle Throw": "Circle Throw", "Clamp": "Clamp", 
+    "Clanging Scales": "Clanging Scales", "Clangorous Soul": "Clangorous Soul", "Clear Smog": "Clear Smog", "Close Combat": "Close Combat", "Coaching": "Coaching", "Coil": "Coil", "Collision Course": "Collision Course", "Comet Punch": "Comet Punch", 
+    "Comeuppance": "Comeuppance", "Confide": "Confide", "Confuse Ray": "Confuse Ray", "Confusion": "Confusion", "Constrict": "Constrict", "Conversion": "Conversion", "Conversion 2": "Conversion 2", "Copycat": "Copycat", "Core Enforcer": "Core Enforcer", 
+    "Corrosive Gas": "Corrosive Gas", "Cosmic Power": "Cosmic Power", "Cotton Guard": "Cotton Guard", "Cotton Spore": "Cotton Spore", "Counter": "Counter", "Court Change": "Court Change", "Covet": "Covet", "Crabhammer": "Crabhammer", "Crafty Shield": "Crafty Shield", 
+    "Cross Chop": "Cross Chop", "Cross Poison": "Cross Poison", "Crunch": "Crunch", "Crush Claw": "Crush Claw", "Crush Grip": "Crush Grip", "Curse": "Curse", "Cut": "Cut", "Dark Pulse": "Dark Pulse", "Dark Void": "Dark Void", "Darkest Lariat": "Darkest Lariat", 
+    "Dazzling Gleam": "Dazzling Gleam", "Decorate": "Decorate", "Defend Order": "Defend Order", "Defense Curl": "Defense Curl", "Defog": "Defog", "Destiny Bond": "Destiny Bond", "Detect": "Detect", "Diamond Storm": "Diamond Storm", "Dig": "Dig", "Dire Claw": "Dire Claw", 
+    "Disable": "Disable", "Disarming Voice": "Disarming Voice", "Discharge": "Discharge", "Dive": "Dive", "Dizzy Punch": "Dizzy Punch", "Doodle": "Doodle", "Doom Desire": "Doom Desire", "Double Hit": "Double Hit", "Double Iron Bash": "Double Iron Bash", 
+    "Double Kick": "Double Kick", "Double Shock": "Double Shock", "Double Slap": "Double Slap", "Double Team": "Double Team", "Double-Edge": "Double-Edge", "Draco Meteor": "Draco Meteor", "Dragon Ascent": "Dragon Ascent", "Dragon Breath": "Dragon Breath", 
+    "Dragon Claw": "Dragon Claw", "Dragon Dance": "Dragon Dance", "Dragon Darts": "Dragon Darts", "Dragon Energy": "Dragon Energy", "Dragon Hammer": "Dragon Hammer", "Dragon Pulse": "Dragon Pulse", "Dragon Rage": "Dragon Rage", "Dragon Rush": "Dragon Rush", 
+    "Dragon Tail": "Dragon Tail", "Drain Punch": "Drain Punch", "Draining Kiss": "Draining Kiss", "Dream Eater": "Dream Eater", "Drill Peck": "Drill Peck", "Drill Run": "Drill Run", "Drum Beating": "Drum Beating", "Dual Chop": "Dual Chop", 
+    "Dual Wingbeat": "Dual Wingbeat", "Dynamax Cannon": "Dynamax Cannon", "Dynamic Punch": "Dynamic Punch", "Earth Power": "Earth Power", "Earthquake": "Earthquake", "Echoed Voice": "Echoed Voice", "Eerie Impulse": "Eerie Impulse", "Eerie Spell": "Eerie Spell", 
+    "Egg Bomb": "Egg Bomb", "Electric Terrain": "Electric Terrain", "Electrify": "Electrify", "Electro Ball": "Electro Ball", "Electro Drift": "Electro Drift", "Electroweb": "Electroweb", "Embargo": "Embargo", "Ember": "Ember", "Encore": "Encore", "Endeavor": "Endeavor", 
+    "Endure": "Endure", "Energy Ball": "Energy Ball", "Entrainment": "Entrainment", "Eruption": "Eruption", "Esper Wing": "Esper Wing", "Eternabeam": "Eternabeam", "Expanding Force": "Expanding Force", "Explosion": "Explosion", "Extrasensory": "Extrasensory", 
+    "Extreme Speed": "Extreme Speed", "Facade": "Facade", "Fairy Lock": "Fairy Lock", "Fairy Wind": "Fairy Wind", "Fake Out": "Fake Out", "Fake Tears": "Fake Tears", "False Surrender": "False Surrender", "False Swipe": "False Swipe", "Feather Dance": "Feather Dance", 
+    "Feint": "Feint", "Feint Attack": "Feint Attack", "Fell Stinger": "Fell Stinger", "Fiery Dance": "Fiery Dance", "Fiery Wrath": "Fiery Wrath", "Fillet Away": "Fillet Away", "Final Gambit": "Final Gambit", "Fire Blast": "Fire Blast", "Fire Fang": "Fire Fang", 
+    "Fire Lash": "Fire Lash", "Fire Pledge": "Fire Pledge", "Fire Punch": "Fire Punch", "Fire Spin": "Fire Spin", "First Impression": "First Impression", "Fishious Rend": "Fishious Rend", "Fissure": "Fissure", "Flail": "Flail", "Flame Burst": "Flame Burst", 
+    "Flame Charge": "Flame Charge", "Flame Wheel": "Flame Wheel", "Flamethrower": "Flamethrower", "Flare Blitz": "Flare Blitz", "Flash": "Flash", "Flash Cannon": "Flash Cannon", "Flatter": "Flatter", "Fleur Cannon": "Fleur Cannon", "Fling": "Fling", 
+    "Flip Turn": "Flip Turn", "Floral Healing": "Floral Healing", "Flower Shield": "Flower Shield", "Flower Trick": "Flower Trick", "Fly": "Fly", "Flying Press": "Flying Press", "Focus Blast": "Focus Blast", "Focus Energy": "Focus Energy", "Focus Punch": "Focus Punch", 
+    "Follow Me": "Follow Me", "Force Palm": "Force Palm", "Foresight": "Foresight", "Forest's Curse": "Forest's Curse", "Foul Play": "Foul Play", "Freeze Shock": "Freeze Shock", "Freeze-Dry": "Freeze-Dry", "Freezing Glare": "Freezing Glare", 
+    "Frenzy Plant": "Frenzy Plant", "Frost Breath": "Frost Breath", "Frustration": "Frustration", "Fury Attack": "Fury Attack", "Fury Cutter": "Fury Cutter", "Fury Swipes": "Fury Swipes", "Fusion Bolt": "Fusion Bolt", "Fusion Flare": "Fusion Flare", 
+    "Future Sight": "Future Sight", "Gastro Acid": "Gastro Acid", "Gear Grind": "Gear Grind", "Gear Up": "Gear Up", "Geomancy": "Geomancy", "Giga Drain": "Giga Drain", "Giga Impact": "Giga Impact", "Gigaton Hammer": "Gigaton Hammer", "Glacial Lance": "Glacial Lance", 
+    "Glaciate": "Glaciate", "Glaive Rush": "Glaive Rush", "Glare": "Glare", "Grass Knot": "Grass Knot", "Grass Pledge": "Grass Pledge", "Grass Whistle": "Grass Whistle", "Grassy Glide": "Grassy Glide", "Grassy Terrain": "Grassy Terrain", "Grav Apple": "Grav Apple", 
+    "Gravity": "Gravity", "Growl": "Growl", "Growth": "Growth", "Grudge": "Grudge", "Guard Split": "Guard Split", "Guard Swap": "Guard Swap", "Guillotine": "Guillotine", "Gunk Shot": "Gunk Shot", "Gust": "Gust", "Gyro Ball": "Gyro Ball", "Hail": "Hail", 
+    "Hammer Arm": "Hammer Arm", "Happy Hour": "Happy Hour", "Harden": "Harden", "Haze": "Haze", "Head Charge": "Head Charge", "Head Smash": "Head Smash", "Headbutt": "Headbutt", "Headlong Rush": "Headlong Rush", "Heal Bell": "Heal Bell", "Heal Block": "Heal Block", 
+    "Heal Order": "Heal Order", "Heal Pulse": "Heal Pulse", "Healing Wish": "Healing Wish", "Heart Stamp": "Heart Stamp", "Heart Swap": "Heart Swap", "Heat Crash": "Heat Crash", "Heat Wave": "Heat Wave", "Heavy Slam": "Heavy Slam", "Helping Hand": "Helping Hand", 
+    "Hex": "Hex", "Hidden Power": "Hidden Power", "High Horsepower": "High Horsepower", "High Jump Kick": "High Jump Kick", "Hold Back": "Hold Back", "Hold Hands": "Hold Hands", "Hone Claws": "Hone Claws", "Horn Attack": "Horn Attack", "Horn Drill": "Horn Drill", 
+    "Horn Leech": "Horn Leech", "Howl": "Howl", "Hurricane": "Hurricane", "Hydro Cannon": "Hydro Cannon", "Hydro Pump": "Hydro Pump", "Hyper Beam": "Hyper Beam", "Hyper Drill": "Hyper Drill", "Hyper Fang": "Hyper Fang", "Hyper Voice": "Hyper Voice", 
+    "Hyperspace Fury": "Hyperspace Fury", "Hyperspace Hole": "Hyperspace Hole", "Hypnosis": "Hypnosis", "Ice Ball": "Ice Ball", "Ice Beam": "Ice Beam", "Ice Burn": "Ice Burn", "Ice Fang": "Ice Fang", "Ice Hammer": "Ice Hammer", "Ice Punch": "Ice Punch", 
+    "Ice Shard": "Ice Shard", "Ice Spinner": "Ice Spinner", "Icicle Crash": "Icicle Crash", "Icicle Spear": "Icicle Spear", "Icy Wind": "Icy Wind", "Imprison": "Imprison", "Incinerate": "Incinerate", "Infernal Parade": "Infernal Parade", "Inferno": "Inferno", 
+    "Infestation": "Infestation", "Ingrain": "Ingrain", "Instruct": "Instruct", "Ion Deluge": "Ion Deluge", "Iron Defense": "Iron Defense", "Iron Head": "Iron Head", "Iron Tail": "Iron Tail", "Jaw Lock": "Jaw Lock", "Jet Punch": "Jet Punch", "Judgment": "Judgment", 
+    "Jump Kick": "Jump Kick", "Jungle Healing": "Jungle Healing", "Karate Chop": "Karate Chop", "Kinesis": "Kinesis", "King's Shield": "King's Shield", "Knock Off": "Knock Off", "Kowtow Cleave": "Kowtow Cleave", "Land's Wrath": "Land's Wrath", 
+    "Laser Focus": "Laser Focus", "Lash Out": "Lash Out", "Last Resort": "Last Resort", "Last Respects": "Last Respects", "Lava Plume": "Lava Plume", "Leaf Blade": "Leaf Blade", "Leaf Storm": "Leaf Storm", "Leaf Tornado": "Leaf Tornado", "Leafage": "Leafage", 
+    "Leech Life": "Leech Life", "Leech Seed": "Leech Seed", "Leer": "Leer", "Lick": "Lick", "Life Dew": "Life Dew", "Light of Ruin": "Light of Ruin", "Light Screen": "Light Screen", "Liquidation": "Liquidation", "Lock-On": "Lock-On", "Lovely Kiss": "Lovely Kiss", 
+    "Low Kick": "Low Kick", "Low Sweep": "Low Sweep", "Lucky Chant": "Lucky Chant", "Lumina Crash": "Lumina Crash", "Lunar Blessing": "Lunar Blessing", "Lunar Dance": "Lunar Dance", "Lunge": "Lunge", "Luster Purge": "Luster Purge", "Mach Punch": "Mach Punch", 
+    "Magic Coat": "Magic Coat", "Magic Powder": "Magic Powder", "Magic Room": "Magic Room", "Magical Leaf": "Magical Leaf", "Magma Storm": "Magma Storm", "Magnet Bomb": "Magnet Bomb", "Magnet Rise": "Magnet Rise", "Magnetic Flux": "Magnetic Flux", 
+    "Magnitude": "Magnitude", "Make It Rain": "Make It Rain", "Mat Block": "Mat Block", "Me First": "Me First", "Mean Look": "Mean Look", "Meditate": "Meditate", "Mega Drain": "Mega Drain", "Mega Kick": "Mega Kick", "Mega Punch": "Mega Punch", "Megahorn": "Megahorn", 
+    "Memento": "Memento", "Metal Burst": "Metal Burst", "Metal Claw": "Metal Claw", "Metal Sound": "Metal Sound", "Meteor Assault": "Meteor Assault", "Meteor Beam": "Meteor Beam", "Meteor Mash": "Meteor Mash", "Metronome": "Metronome", "Milk Drink": "Milk Drink", 
+    "Mimic": "Mimic", "Mind Blown": "Mind Blown", "Mind Reader": "Mind Reader", "Minimize": "Minimize", "Miracle Eye": "Miracle Eye", "Mirror Coat": "Mirror Coat", "Mirror Move": "Mirror Move", "Mirror Shot": "Mirror Shot", "Mist": "Mist", "Mist Ball": "Mist Ball", 
+    "Misty Explosion": "Misty Explosion", "Misty Terrain": "Misty Terrain", "Moonblast": "Moonblast", "Moongeist Beam": "Moongeist Beam", "Moonlight": "Moonlight", "Morning Sun": "Morning Sun", "Mortal Spin": "Mortal Spin", "Mountain Gale": "Mountain Gale", 
+    "Mud Bomb": "Mud Bomb", "Mud Shot": "Mud Shot", "Mud Sport": "Mud Sport", "Mud-Slap": "Mud-Slap", "Muddy Water": "Muddy Water", "Multi-Attack": "Multi-Attack", "Mystical Fire": "Mystical Fire", "Mystical Power": "Mystical Power", "Nasty Plot": "Nasty Plot", 
+    "Natural Gift": "Natural Gift", "Nature Power": "Nature Power", "Nature's Madness": "Nature's Madness", "Needle Arm": "Needle Arm", "Night Daze": "Night Daze", "Night Shade": "Night Shade", "Night Slash": "Night Slash", "Nightmare": "Nightmare", 
+    "No Retreat": "No Retreat", "Noble Roar": "Noble Roar", "Nuzzle": "Nuzzle", "Oblivion Wing": "Oblivion Wing", "Obstruct": "Obstruct", "Octazooka": "Octazooka", "Octolock": "Octolock", "Odor Sleuth": "Odor Sleuth", "Ominous Wind": "Ominous Wind", 
+    "Order Up": "Order Up", "Origin Pulse": "Origin Pulse", "Outrage": "Outrage", "Overdrive": "Overdrive", "Overheat": "Overheat", "Pain Split": "Pain Split", "Parabolic Charge": "Parabolic Charge", "Parting Shot": "Parting Shot", "Pay Day": "Pay Day", 
+    "Payback": "Payback", "Peck": "Peck", "Perish Song": "Perish Song", "Petal Blizzard": "Petal Blizzard", "Petal Dance": "Petal Dance", "Phantom Force": "Phantom Force", "Photon Geyser": "Photon Geyser", "Pin Missile": "Pin Missile", "Plasma Fists": "Plasma Fists", 
+    "Play Nice": "Play Nice", "Play Rough": "Play Rough", "Pluck": "Pluck", "Poison Fang": "Poison Fang", "Poison Gas": "Poison Gas", "Poison Jab": "Poison Jab", "Poison Powder": "Poison Powder", "Poison Sting": "Poison Sting", "Poison Tail": "Poison Tail", 
+    "Pollen Puff": "Pollen Puff", "Poltergeist": "Poltergeist", "Population Bomb": "Population Bomb", "Pounce": "Pounce", "Pound": "Pound", "Powder": "Powder", "Powder Snow": "Powder Snow", "Power Gem": "Power Gem", "Power Shift": "Power Shift", 
+    "Power Split": "Power Split", "Power Swap": "Power Swap", "Power Trick": "Power Trick", "Power Trip": "Power Trip", "Power Whip": "Power Whip", "Power-Up Punch": "Power-Up Punch", "Precipice Blades": "Precipice Blades", "Present": "Present", 
+    "Prismatic Laser": "Prismatic Laser", "Protect": "Protect", "Psybeam": "Psybeam", "Psych Up": "Psych Up", "Psychic": "Psychic", "Psychic Fangs": "Psychic Fangs", "Psychic Terrain": "Psychic Terrain", "Psycho Boost": "Psycho Boost", "Psycho Cut": "Psycho Cut", 
+    "Psycho Shift": "Psycho Shift", "Psyshield Bash": "Psyshield Bash", "Psyshock": "Psyshock", "Psystrike": "Psystrike", "Psywave": "Psywave", "Punishment": "Punishment", "Purify": "Purify", "Pursuit": "Pursuit", "Pyro Ball": "Pyro Ball", "Quash": "Quash", 
+    "Quick Attack": "Quick Attack", "Quick Guard": "Quick Guard", "Quiver Dance": "Quiver Dance", "Rage": "Rage", "Rage Fist": "Rage Fist", "Rage Powder": "Rage Powder", "Raging Bull": "Raging Bull", "Raging Fury": "Raging Fury", "Rain Dance": "Rain Dance", 
+    "Rapid Spin": "Rapid Spin", "Razor Leaf": "Razor Leaf", "Razor Shell": "Razor Shell", "Razor Wind": "Razor Wind", "Recover": "Recover", "Recycle": "Recycle", "Reflect": "Reflect", "Reflect Type": "Reflect Type", "Refresh": "Refresh", "Relic Song": "Relic Song", 
+    "Rest": "Rest", "Retaliate": "Retaliate", "Return": "Return", "Revelation Dance": "Revelation Dance", "Revenge": "Revenge", "Reversal": "Reversal", "Revival Blessing": "Revival Blessing", "Rising Voltage": "Rising Voltage", "Roar": "Roar", 
+    "Roar of Time": "Roar of Time", "Rock Blast": "Rock Blast", "Rock Climb": "Rock Climb", "Rock Polish": "Rock Polish", "Rock Slide": "Rock Slide", "Rock Smash": "Rock Smash", "Rock Throw": "Rock Throw", "Rock Tomb": "Rock Tomb", "Rock Wrecker": "Rock Wrecker", 
+    "Role Play": "Role Play", "Rolling Kick": "Rolling Kick", "Rollout": "Rollout", "Roost": "Roost", "Rototiller": "Rototiller", "Round": "Round", "Ruination": "Ruination", "Sacred Fire": "Sacred Fire", "Sacred Sword": "Sacred Sword", "Safeguard": "Safeguard", 
+    "Salt Cure": "Salt Cure", "Sand Attack": "Sand Attack", "Sand Tomb": "Sand Tomb", "Sandsear Storm": "Sandsear Storm", "Sandstorm": "Sandstorm", "Scald": "Scald", "Scale Shot": "Scale Shot", "Scary Face": "Scary Face", "Scorching Sands": "Scorching Sands", 
+    "Scratch": "Scratch", "Screech": "Screech", "Searing Shot": "Searing Shot", "Secret Power": "Secret Power", "Secret Sword": "Secret Sword", "Seed Bomb": "Seed Bomb", "Seed Flare": "Seed Flare", "Seismic Toss": "Seismic Toss", "Self-Destruct": "Self-Destruct", 
+    "Shadow Ball": "Shadow Ball", "Shadow Bone": "Shadow Bone", "Shadow Claw": "Shadow Claw", "Shadow Force": "Shadow Force", "Shadow Punch": "Shadow Punch", "Shadow Sneak": "Shadow Sneak", "Sharpen": "Sharpen", "Shed Tail": "Shed Tail", "Sheer Cold": "Sheer Cold", 
+    "Shell Side Arm": "Shell Side Arm", "Shell Smash": "Shell Smash", "Shell Trap": "Shell Trap", "Shelter": "Shelter", "Shift Gear": "Shift Gear", "Shock Wave": "Shock Wave", "Shore Up": "Shore Up", "Signal Beam": "Signal Beam", "Silk Trap": "Silk Trap", 
+    "Silver Wind": "Silver Wind", "Simple Beam": "Simple Beam", "Sing": "Sing", "Sketch": "Sketch", "Skill Swap": "Skill Swap", "Skitter Smack": "Skitter Smack", "Skull Bash": "Skull Bash", "Sky Attack": "Sky Attack", "Sky Drop": "Sky Drop", 
+    "Sky Uppercut": "Sky Uppercut", "Slack Off": "Slack Off", "Slam": "Slam", "Slash": "Slash", "Sleep Powder": "Sleep Powder", "Sleep Talk": "Sleep Talk", "Sludge": "Sludge", "Sludge Bomb": "Sludge Bomb", "Sludge Wave": "Sludge Wave", "Smack Down": "Smack Down", 
+    "Smart Strike": "Smart Strike", "Smelling Salts": "Smelling Salts", "Smog": "Smog", "Smokescreen": "Smokescreen", "Snap Trap": "Snap Trap", "Snarl": "Snarl", "Snatch": "Snatch", "Snipe Shot": "Snipe Shot", "Snore": "Snore", "Snowscape": "Snowscape", "Soak": "Soak", 
+    "Soft-Boiled": "Soft-Boiled", "Solar Beam": "Solar Beam", "Solar Blade": "Solar Blade", "Sonic Boom": "Sonic Boom", "Spacial Rend": "Spacial Rend", "Spark": "Spark", "Sparkling Aria": "Sparkling Aria", "Spectral Thief": "Spectral Thief", "Speed Swap": "Speed Swap", 
+    "Spicy Extract": "Spicy Extract", "Spider Web": "Spider Web", "Spike Cannon": "Spike Cannon", "Spikes": "Spikes", "Spiky Shield": "Spiky Shield", "Spin Out": "Spin Out", "Spirit Break": "Spirit Break", "Spirit Shackle": "Spirit Shackle", "Spit Up": "Spit Up", 
+    "Spite": "Spite", "Splash": "Splash", "Spore": "Spore", "Spotlight": "Spotlight", "Springtide Storm": "Springtide Storm", "Stealth Rock": "Stealth Rock", "Steam Eruption": "Steam Eruption", "Steamroller": "Steamroller", "Steel Beam": "Steel Beam", 
+    "Steel Roller": "Steel Roller", "Steel Wing": "Steel Wing", "Sticky Web": "Sticky Web", "Stockpile": "Stockpile", "Stomp": "Stomp", "Stomping Tantrum": "Stomping Tantrum", "Stone Axe": "Stone Axe", "Stone Edge": "Stone Edge", "Stored Power": "Stored Power", 
+    "Storm Throw": "Storm Throw", "Strange Steam": "Strange Steam", "Strength": "Strength", "Strength Sap": "Strength Sap", "String Shot": "String Shot", "Struggle": "Struggle", "Struggle Bug": "Struggle Bug", "Stuff Cheeks": "Stuff Cheeks", "Stun Spore": "Stun Spore", 
+    "Submission": "Submission", "Substitute": "Substitute", "Sucker Punch": "Sucker Punch", "Sunny Day": "Sunny Day", "Sunsteel Strike": "Sunsteel Strike", "Super Fang": "Super Fang", "Superpower": "Superpower", "Supersonic": "Supersonic", "Surf": "Surf", 
+    "Surging Strikes": "Surging Strikes", "Swagger": "Swagger", "Swallow": "Swallow", "Sweet Kiss": "Sweet Kiss", "Sweet Scent": "Sweet Scent", "Swift": "Swift", "Switcheroo": "Switcheroo", "Swords Dance": "Swords Dance", "Synchronoise": "Synchronoise", 
+    "Synthesis": "Synthesis", "Tackle": "Tackle", "Tail Glow": "Tail Glow", "Tail Slap": "Tail Slap", "Tail Whip": "Tail Whip", "Tailwind": "Tailwind", "Take Down": "Take Down", "Take Heart": "Take Heart", "Tar Shot": "Tar Shot", "Taunt": "Taunt", 
+    "Tearful Look": "Tearful Look", "Teatime": "Teatime", "Techno Blast": "Techno Blast", "Teeter Dance": "Teeter Dance", "Telekinesis": "Telekinesis", "Teleport": "Teleport", "Tera Blast": "Tera Blast", "Terrain Pulse": "Terrain Pulse", "Thief": "Thief", 
+    "Thousand Arrows": "Thousand Arrows", "Thousand Waves": "Thousand Waves", "Thrash": "Thrash", "Throat Chop": "Throat Chop", "Thunder": "Thunder", "Thunder Cage": "Thunder Cage", "Thunder Fang": "Thunder Fang", "Thunder Punch": "Thunder Punch", 
+    "Thunder Shock": "Thunder Shock", "Thunder Wave": "Thunder Wave", "Thunderbolt": "Thunderbolt", "Thunderous Kick": "Thunderous Kick", "Tickle": "Tickle", "Tidy Up": "Tidy Up", "Topsy-Turvy": "Topsy-Turvy", "Torch Song": "Torch Song", "Torment": "Torment", 
+    "Toxic": "Toxic", "Toxic Spikes": "Toxic Spikes", "Toxic Thread": "Toxic Thread", "Trailblaze": "Trailblaze", "Transform": "Transform", "Tri Attack": "Tri Attack", "Trick": "Trick", "Trick Room": "Trick Room", "Trick-or-Treat": "Trick-or-Treat", 
+    "Triple Arrows": "Triple Arrows", "Triple Axel": "Triple Axel", "Triple Dive": "Triple Dive", "Triple Kick": "Triple Kick", "Trop Kick": "Trop Kick", "Trump Card": "Trump Card", "Twin Beam": "Twin Beam", "Twineedle": "Twineedle", "Twister": "Twister", 
+    "U-turn": "U-turn", "Uproar": "Uproar", "V-create": "V-create", "Vacuum Wave": "Vacuum Wave", "Venom Drench": "Venom Drench", "Venoshock": "Venoshock", "Victory Dance": "Victory Dance", "Vine Whip": "Vine Whip", "Vise Grip": "Vise Grip", "Vital Throw": "Vital Throw", 
+    "Volt Switch": "Volt Switch", "Volt Tackle": "Volt Tackle", "Wake-Up Slap": "Wake-Up Slap", "Water Gun": "Water Gun", "Water Pledge": "Water Pledge", "Water Pulse": "Water Pulse", "Water Shuriken": "Water Shuriken", "Water Sport": "Water Sport", 
+    "Water Spout": "Water Spout", "Waterfall": "Waterfall", "Wave Crash": "Wave Crash", "Weather Ball": "Weather Ball", "Whirlpool": "Whirlpool", "Whirlwind": "Whirlwind", "Wicked Blow": "Wicked Blow", "Wide Guard": "Wide Guard", "Wild Charge": "Wild Charge", 
+    "Wildbolt Storm": "Wildbolt Storm", "Will-O-Wisp": "Will-O-Wisp", "Wing Attack": "Wing Attack", "Wish": "Wish", "Withdraw": "Withdraw", "Wonder Room": "Wonder Room", "Wood Hammer": "Wood Hammer", "Work Up": "Work Up", "Worry Seed": "Worry Seed", "Wrap": "Wrap", 
+    "Wring Out": "Wring Out", "X-Scissor": "X-Scissor", "Yawn": "Yawn", "Zap Cannon": "Zap Cannon", "Zen Headbutt": "Zen Headbutt", "Zing Zap": "Zing Zap"};
+
+        var $mySelect1 = $('#move1');
+
+        $.each(learnable, function(key, value) {
+          var $option = $("<option/>", {
+            value: key,
+            text: value
+          });
+          $mySelect1.append($option);
+        });
+
+        var $mySelect2 = $('#move2');
+
+        $.each(learnable, function(key, value) {
+          var $option = $("<option/>", {
+            value: key,
+            text: value
+          });
+          $mySelect2.append($option);
+        });
+
+        var $mySelect3 = $('#move3');
+
+        $.each(learnable, function(key, value) {
+          var $option = $("<option/>", {
+            value: key,
+            text: value
+          });
+          $mySelect3.append($option);
+        });
+
+        var $mySelect4 = $('#move4');
+
+        $.each(learnable, function(key, value) {
+          var $option = $("<option/>", {
+            value: key,
+            text: value
+          });
+          $mySelect4.append($option);
+        });
+
+
+    /*$("#species").change(function() {
       var monName = $(this).children("option:selected").val().toLowerCase().replace(/[^a-z0-9]/g, "");
       var pokemon = dex.species.get(monName);
       if (monName && pokemon) {
@@ -3296,8 +3428,7 @@
         //}
 
         // Populate Moves
-        var learnable = [];
-        dex.learnsets.learnable(monName).then(function(learnset) {
+        /*dex.learnsets.learnable(monName).then(function(learnset) {
           var set = Object.keys(learnset);
           for (var j = 0; j < set.length; j++) {
             var move = Dex.moves.get(set[j]).name;
@@ -3355,17 +3486,17 @@
         } */
 
 
-      } else {
+      /*} else {
         //Reset fields
         $("#forms").html("<option value=\" \">Select one...</option>");
         $("#form-container").addClass("d-none");
-        //$("#ability").html("<option value=\" \">Select one...</option>");
+        $("#ability").html("<option value=\" \">Select one...</option>");
         $("#gender").html("<option value=\" \">Select One...</option><option value=\"F\">Female (&#x2640;)</option><option value=\"M\">Male (&#x2642;)</option><option value=\"-\">Genderless</option>");
         for (var i = 1; i < 5; i++) {
           $("#move" + i).html("<option value=\" \">(No Move)</option>");
         }
       }
-    });
+    });*/
 
 
     // Validate TID
