@@ -1808,7 +1808,7 @@
     window.dex9 = dex9;
     window.dex8 = dex8;
 
-    window.mode = $("#SWSH").prop("checked") ? 8 : 9;
+    window.mode = $("#gameVersion").children("option:selected").val() === "SwSh" ? 8 : 9;
 
     window.speciesList = Array.from(window.mode == 9 ? dex9.species : dex8.species).sort();
 
